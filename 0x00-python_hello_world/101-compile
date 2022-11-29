@@ -1,0 +1,2 @@
+#!/bin/bash
+pyinstaller --onefile "$PYFILE" --name my_main.pyc
