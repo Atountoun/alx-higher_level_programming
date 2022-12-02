@@ -1,0 +1,59 @@
+#!/bin/bash
+function usage {
+	echo "Usage : ./winbash [gitall | cmd] [arguments] [-m message]"
+}
+
+if [ $# -ge 1 ]
+then
+	if [ $1 == "gitall" ]
+	then
+		arg="$#"
+		args=("$@")
+
+		if [ ${#args} -eq 1 ]
+		then
+			git add .
+		else
+			i=1
+			while [ $i  -lt $arg ]
+			do
+				if [ -f ${args[i]} ]
+				then
+					git add ${args[i]}
+				else
+					echo "The file ${args[i]} does not exists"
+					usage
+				fi
+				((i=i+1))
+			done
+		fi
+
+		while getopts m: opt
+		do
+			case $opt in
+				m)
+					if [ -n ${OPTARG} ]
+					then
+						git commit -m ${OPTARG}
+					else
+						git commit -m "update"
+					fi;;
+				*)
+					echo "Wrong option $opt"
+			esac
+		done
+		git push
+	fi
+fi
+
+while getopts m:M opt
+do
+	case $opt in
+		m) 
+			echo "message = ${OPTARG}";;
+		M)
+			echo "Message = ${OPTARG}";;
+		*)
+			echo "No option given"
+	esac
+done
