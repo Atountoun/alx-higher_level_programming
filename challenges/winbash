@@ -41,7 +41,7 @@ function gitallfunction {
 			then
 				git add .
 				((count++))
-				echo "git add all"
+				echo "git add all ; count = $count"
 			else
 #				echo "S1 is $1"
 #				echo "not equals -m"
@@ -49,9 +49,11 @@ function gitallfunction {
 				exit 1
 			fi
 		fi
-		if [ -n ${arguments[$count+1]} ]
+		if [ -n ${arguments[$(count+1)]} ]
 		then
-			git commit -m "${arguments[$count+1]}"
+			echo "$(count+1)"
+			echo "${arguments[$(count+1)]}"
+			git commit -m "${arguments[$(count+1)]}"
 			echo "commit with message"
 		else
 			git commit -m "Update"
