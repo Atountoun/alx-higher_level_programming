@@ -18,10 +18,11 @@ function gitallfunction {
 		if [ -f $1 ]
 		then
 			echo "file exists"
-			for x in "${arguments[@]:1}"
+			for x in "${arguments[@]}"
 			do
 				if [ -f $x ]
 				then
+					echo "Found"
 					git add $x
 					((count++))
 					echo "git add $count"
@@ -29,6 +30,8 @@ function gitallfunction {
 					if [ $x == "-m" ]
 					then
 						echo "Encounter message"
+						((count++))
+						echo "stop at $count"
 						break
 					else
 						usage
@@ -49,10 +52,11 @@ function gitallfunction {
 				exit 1
 			fi
 		fi
-		if [ -n ${arguments[$count]} ]
+		echo "${arguments[$count]}"
+		if [ -n "${arguments[$count]}" ]
 		then
 			echo $2
-#			echo "$((count+1))"
+
 			echo "${arguments[$count]}"
 			echo "${arguments[1]}"
 			git commit -m "${arguments[$count]}"
