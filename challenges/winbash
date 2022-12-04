@@ -8,12 +8,12 @@ function gitallfunction {
 	arguments=("$@")
 	if [ ${#arguments} -gt 1 ]
 	then
-		echo "Args ${#arguments[@]}"
+#		echo "Args ${#arguments[@]}"
 		count=0
-#	for x in "${arguments[@]}"
-#	do
-#		echo "$x"
-#	done
+#		for x in "${arguments[@]}"
+#		do
+#			echo "$x"
+#		done
 		echo "Arguments passed to git all are greater than 1"
 		if [ -f $1 ]
 		then
@@ -23,7 +23,7 @@ function gitallfunction {
 				if [ -f $x ]
 				then
 					git add $x
-					(($count++))
+					((count++))
 					echo "git add $count"
 				else
 					if [ $x == "-m" ]
@@ -37,21 +37,21 @@ function gitallfunction {
 				fi
 			done
 		else
-			if [ $1 == "-m" ]
+			if [[ $1 == "-m" && -n $2 ]]
 			then
 				git add .
-				(($count++))
+				((count++))
 				echo "git add all"
 			else
-				echo "S1 is $1"
-				echo "not equals -m"
+#				echo "S1 is $1"
+#				echo "not equals -m"
 				usage
 				exit 1
 			fi
 		fi
 		if [ -n ${arguments[$count+1]} ]
 		then
-			git commit -m ${arguments[$count+1]}
+			git commit -m "${arguments[$count+1]}"
 			echo "commit with message"
 		else
 			git commit -m "Update"
