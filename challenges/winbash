@@ -49,11 +49,12 @@ function gitallfunction {
 				exit 1
 			fi
 		fi
-		if [ -n ${arguments[$(count+1)]} ]
+		if [ -n ${arguments[$count+1]} ]
 		then
-			echo "$(count+1)"
-			echo "${arguments[$(count+1)]}"
-			git commit -m "${arguments[$(count+1)]}"
+			echo $2
+#			echo "$((count+1))"
+			echo "${arguments[$((count+1))]}"
+			git commit -m "${arguments[$((count-1))]}"
 			echo "commit with message"
 		else
 			git commit -m "Update"
