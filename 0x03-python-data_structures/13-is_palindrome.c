@@ -4,7 +4,7 @@
 
 int is_palindrome(listint_t **head);
 void reverse(listint_t **ref);
-bool compare(listint_t *first_head, listint_t *second_head);
+int compare(listint_t *first_head, listint_t *second_head);
 
 /**
  * reverse - counts the number of nodes of the list
