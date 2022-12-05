@@ -21,16 +21,16 @@ function gitallfunction {
 			do
 				if [ -f $x ]
 				then
-					echo "Found"
+#					echo "Found"
 					git add $x
 					((count++))
-					echo "git add $count"
+#					echo "git add $count"
 				else
 					if [ $x == "-m" ]
 					then
-						echo "Encounter message"
+#						echo "Encounter message"
 						((count++))
-						echo "stop at $count"
+#						echo "stop at $count"
 						break
 					else
 						usage
@@ -43,7 +43,7 @@ function gitallfunction {
 			then
 				git add .
 				((count++))
-				echo "git add all ; count = $count"
+#				echo "git add all ; count = $count"
 			else
 #				echo "S1 is $1"
 #				echo "not equals -m"
@@ -54,21 +54,21 @@ function gitallfunction {
 		echo "${arguments[$count]}"
 		if [ -n "${arguments[$count]}" ]
 		then
-			echo $2
+#			echo $2
 
-			echo "${arguments[$count]}"
-			echo "${arguments[1]}"
+#			echo "${arguments[$count]}"
+#			echo "${arguments[1]}"
 			git commit -m "${arguments[$count]}"
-			echo "commit with message"
+#			echo "commit with message"
 		else
 			git commit -m "Update"
-			echo "commit with update"
+#			echo "commit with update"
 		fi
-		echo "Exiting with 0"
+#		echo "Exiting with 0"
 		git push
 
 	else
-		echo "Arguments passed to git all are not greater than 1"
+#		echo "Arguments passed to git all are not greater than 1"
 		git add .
 		git commit -m "Update"
 		git push
@@ -121,3 +121,4 @@ then
 #		git push
 	fi
 fi
+
