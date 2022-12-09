@@ -1,0 +1,123 @@
+#!/bin/bash
+function usage {
+	tput bold
+	echo "Usage : ./winbash [gitall | cmd] [arguments] [-m message]"
+}
+
+function gitallfunction {
+	arguments=("$@")
+	if [ ${#arguments} -gt 1 ]
+	then
+#		echo "Args ${#arguments[@]}"
+		count=0
+#		for x in "${arguments[@]}"
+#		do
+#			echo "$x"
+#		done
+#		echo "Arguments passed to git all are greater than 1"
+		if [ -f $1 ]
+		then
+			for x in "${arguments[@]}"
+			do
+				if [ -f $x ]
+				then
+#					echo "Found"
+					git add $x
+					((count++))
+#					echo "git add $count"
+				else
+					if [ $x == "-m" ]
+					then
+#						echo "Encounter message"
+						((count++))
+#						echo "stop at $count"
+						break
+					else
+						usage
+						exit 1
+					fi
+				fi
+			done
+		else
+			if [[ $1 == "-m" && -n $2 ]]
+			then
+				git add .
+				((count++))
+#				echo "git add all ; count = $count"
+			else
+#				echo "S1 is $1"
+#				echo "not equals -m"
+				usage
+				exit 1
+			fi
+		fi
+		echo "${arguments[$count]}"
+		if [ -n "${arguments[$count]}" ]
+		then
+#			echo $2
+
+#			echo "${arguments[$count]}"
+#			echo "${arguments[1]}"
+			git commit -m "${arguments[$count]}"
+#			echo "commit with message"
+		else
+			git commit -m "Update"
+#			echo "commit with update"
+		fi
+#		echo "Exiting with 0"
+		git push
+
+	else
+#		echo "Arguments passed to git all are not greater than 1"
+		git add .
+		git commit -m "Update"
+		git push
+	fi
+}
+
+if [ $# -ge 1 ]
+then
+	if [ $1 == "gitall" ]
+	then
+		args=("$@")
+
+		gitallfunction "${args[@]:1}"
+#		if [ ${#args} -eq 1 ]
+#		then
+#			echo "All files with be added"
+#			git add .
+#		else
+#			i=1
+#			while [ $i  -lt ${#} ]
+#			do
+#				echo ${args[i]}
+#				if [ -f ${args[i]} ]
+#				then
+#					git add ${args[i]}
+#				else
+#					echo "The file ${args[i]} does not exists"
+#					usage
+#					exit 1
+#				fi
+#				((i=i+1))
+#			done
+#		fi
+#		exit 0
+#		while getopts m: opt
+#		do
+#			case $opt in
+#				m)
+#					if [ -n ${OPTARG} ]
+#					then
+#						git commit -m ${OPTARG}
+#					else
+#						git commit -m "update"
+#					fi;;
+#				*)
+#					echo "Wrong option $opt"
+#			esac
+#		done
+#		echo "Executing git push"
+#		git push
+	fi
+fi
