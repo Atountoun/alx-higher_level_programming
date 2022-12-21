@@ -55,9 +55,12 @@ class SinglyLinkedList:
                 if value < current_node.data:
                     prev_node.next_node = new_node
                     new_node.next_node = current_node
-                    break
+                    return
                 prev_node = current_node
                 current_node = prev_node.next_node
+            else:
+                prev_node.next_node = new_node
+                new_node.next_node = None
 
     def __str__(self):
         current_node = self.__head
