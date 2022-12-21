@@ -56,7 +56,8 @@ class SinglyLinkedList:
                     prev_node.next_node = new_node
                     new_node.next_node = current_node
                     break
-                current_node = current_node.next_node
+                prev_node = current_node
+                current_node = prev_node.next_node
 
     def __str__(self):
         current_node = self.__head
