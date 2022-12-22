@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Define module for the python bytecode given."""
 
+import math
+
 
 class MagicClass:
     """Class that represents the assembly of the Python bytecode."""
