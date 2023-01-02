@@ -69,8 +69,8 @@ class Rectangle:
         for i in range(self.__height):
             line = ""
             for j in range(self.__width):
-                line += Rectangle.print_symbol
-            lines.append(line)
+                line += str(self.print_symbol)
+            lines.append("".join(line))
 
         return '\n'.join(lines)
 
