@@ -3,9 +3,10 @@
 
 
 class Rectangle:
+    """Class Rectangle that defines a rectangle."""
+
     number_of_instances = 0
 
-    """Class Rectangle that defines a rectangle."""
     def __init__(self, width=0, height=0):
         """The constructor of the class.
 
@@ -13,9 +14,9 @@ class Rectangle:
             width (int): the width of the rectangle
             height (int): the height of the rectangle
         """
+        type(self).number_of_instances += 1
         self.width = width
         self.height = height
-        type(self).number_of_instances += 1
 
     @property
     def width(self):
