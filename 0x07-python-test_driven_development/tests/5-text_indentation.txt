@@ -1,0 +1,36 @@
+>>> indent = __import__('5-text_indentation').text_indentation
+>>> indent(3222233.42442)
+Traceback (innermost last):
+TypeError: text must be a string
+>>> indent(""" Hello, how are you? I guess you are doing great.""")
+Hello, how are you?
+<BLANKLINE>
+I guess you are doing great.
+<BLANKLINE>
+>>> indent("""     Hello, guys. How are you doing? They said: Do hard things! """)
+Hello, guys.
+<BLANKLINE>
+How are you doing?
+<BLANKLINE>
+They said:
+<BLANKLINE>
+Do hard things!
+>>> indent(["Hi little and gentlement.", "Hope you are doing great:"])
+Traceback (innermost last):
+TypeError: text must be a string
+>>> indent(""":Duis aute irure dolor in reprehenderit in voluptate : \
+... elit esse cillum dolore eu fugiat nulla pariatur.\
+... xcepteur sint occaecat cupidatat non proident:\
+... unt in culpa qui officia deserunt mollit anim? id est laborum.""")
+:
+<BLANKLINE>
+Duis aute irure dolor in reprehenderit in voluptate :
+<BLANKLINE>
+elit esse cillum dolore eu fugiat nulla pariatur.
+<BLANKLINE>
+xcepteur sint occaecat cupidatat non proident:
+<BLANKLINE>
+unt in culpa qui officia deserunt mollit anim?
+<BLANKLINE>
+id est laborum.
+<BLANKLINE>

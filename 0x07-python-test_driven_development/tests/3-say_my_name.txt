@@ -1,0 +1,17 @@
+>>> my_full_name = __import__('3-say_my_name').say_my_name
+>>> my_full_name("Mike", "Ross")
+My name is Mike Ross
+>>> my_full_name("Ridway")
+My name is Ridway 
+>>> my_full_name(11, "Sunday")
+Traceback (innermost last):
+TypeError: first_name must be a string
+>>> my_full_name("Nick", ["Ok"])
+Traceback (innermost last):
+TypeError: last_name must be a string
+>>> my_full_name(None)
+Traceback (innermost last):
+TypeError: first_name must be a string
+>>> my_full_name(23, 11)
+Traceback (innermost last):
+TypeError: first_name must be a string

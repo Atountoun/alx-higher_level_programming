@@ -1,0 +1,22 @@
+>>> print_sqr = __import__('4-print_square').print_square
+>>> print_sqr(4)
+####
+####
+####
+####
+>>> print_sqr(0)
+
+>>> print_sqr(1)
+#
+>>> print_sqr("6")
+Traceback (innermost last):
+TypeError: size must be an integer
+>>> print_sqr(-2)
+Traceback (innermost last):
+ValueError: size must be >= 0
+>>> print_sqr(6.3)
+Traceback (innermost last):
+TypeError: size must be an integer
+>>> print_sqr(None)
+Traceback (innermost last):
+TypeError: size must be an integer
