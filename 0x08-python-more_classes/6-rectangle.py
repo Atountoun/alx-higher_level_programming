@@ -6,7 +6,7 @@ class Rectangle:
     """Class Rectangle that defines a rectangle."""
 
     number_of_instances = 0
-
+  
     def __init__(self, width=0, height=0):
         """The constructor of the class.
 
@@ -41,7 +41,7 @@ class Rectangle:
     @height.setter
     def height(self, value):
         if not isinstance(value, int):
-            raise TypeError("height must be a integer")
+            raise TypeError("height must be an integer")
 
         if value < 0:
             raise ValueError("height must be >= 0")
