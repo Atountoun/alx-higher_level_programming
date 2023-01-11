@@ -13,7 +13,7 @@ def append_write(filename="", text=""):
         text (str): the text to be appended to the file
     """
     chars = 0
-    with open(filename, "a", "utf-8") as f:
+    with open(filename, "a") as f:
         chars = f.write(text)
 
     return chars
