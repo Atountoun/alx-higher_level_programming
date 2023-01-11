@@ -22,8 +22,9 @@ class Student:
         of a Student instance
         """
         result = dict()
-        if not attrs:
+        if attrs is None:
             return self.__dict__
         for attr in attrs:
-            result[attr] = self.__dict__[attr]
+            if attr in self.__dict__.keys():
+                result[attr] = self.__dict__[attr]
         return result

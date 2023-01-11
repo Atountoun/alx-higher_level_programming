@@ -13,13 +13,13 @@ def pascal_triangle(n):
         List of lists: if n > 0
     """
     result = []
-    for i in range(i):
+    for i in range(n):
         row = []
         for k in range(i + 1):
             if k == 0 or k == i:
                 row.append(1)
             else:
                 high = result[i-1]
-                row.append(high[j-1] + high[j])
+                row.append(high[k-1] + high[k])
         result.append(row)
     return result

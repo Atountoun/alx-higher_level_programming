@@ -9,7 +9,7 @@ def load_from_json_file(filename):
     Args:
         filename (str): the file to be used
     """
-    with open(filename, "utf-8") as f:
+    with open(filename) as f:
         data = json.load(f)
 
         return data

@@ -3,11 +3,10 @@
 using file.
 """
 import sys
-import os.path
 import json
 from os import path
-save = __import__('6-save_to_json_file').save_to_json_file
-load = __import__('7-load_from_json_file').load_from_json_file
+save = __import__('5-save_to_json_file').save_to_json_file
+load = __import__('6-load_from_json_file').load_from_json_file
 
 filename = "add_item.json"
 new_data = sys.argv[1:]
@@ -16,5 +15,5 @@ if not path.exists(filename):
     save(new_data, filename)
 else:
     data = load(filename)
-    data.extends(new_data)
+    data.extend(new_data)
     save(data, filename)
