@@ -21,4 +21,43 @@ class Square(Rectangle):
         """String method of the square.
         Format: [Square] (<id>) <x>/<y> - <size>
         """
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.widt²²"
+
+    @property
+    def size(self):
+        """Getter method for the size property of the square."""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        self.width = value
+
+    def update(self, *args, **kwargs):
+        """Update method for the properties of the square.
+
+        Args:
+            args: list of variable length of no-keyworded arguments
+            kwargs: variable length of keyworded arguments
+        """
+        attrs = ["id", "size", "x", "y"]
+        if len(args) != 0:
+            for key, value in enumerate(args):
+                if key < 4:
+                    setattr(self, attrs[key], value)
+                else:
+                    break
+        else:
+            for key, value in kwargs.items():
+                if hasattr(self,key):
+                    setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Returns the dictionary represention of a square."""
+        square_dict = {}
+        for key, value in self.__dict__.items():
+            if key != "width" and key != "height":
+                square_dict[key] = value
+            else:
+                square_dict["size"] = value
+
+        return square_dict
