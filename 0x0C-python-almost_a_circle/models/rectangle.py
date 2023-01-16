@@ -110,8 +110,9 @@ class Rectangle(Base):
         Args:
             args : no-keywords arguments with variable length
         """
-        self.__x = args[0] if args[0] else self.__x
-        self.__y = args[1] if args[1] else self.__y
-        self.__width = args[2] if args[2] else self.__width
-        self.__height = args[3] if args[3] else self.__height
-        self.id = args[4] if args[4] else self.id
+        attrs = ["id", "width", "height", "x", "y"]
+        for key, value in enumerate(args):
+            if key < 5:
+                setattr(self, attrs[key], value)
+            else:
+                break
