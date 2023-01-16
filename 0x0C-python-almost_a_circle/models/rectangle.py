@@ -104,15 +104,19 @@ class Rectangle(Base):
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - " \
                f"{self.__width}/{self.__height}"
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Update the rectangle with the argmments passed to the method.
 
         Args:
             args : no-keywords arguments with variable length
         """
-        attrs = ["id", "width", "height", "x", "y"]
-        for key, value in enumerate(args):
-            if key < 5:
-                setattr(self, attrs[key], value)
-            else:
-                break
+        if len(args) != 0:
+            attrs = ["id", "width", "height", "x", "y"]
+            for key, value in enumerate(args):
+                if key < 5:
+                    setattr(self, attrs[key], value)
+                else:
+                    break
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
