@@ -21,7 +21,7 @@ class Square(Rectangle):
         """String method of the square.
         Format: [Square] (<id>) <x>/<y> - <size>
         """
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.widt²²"
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     @property
     def size(self):
@@ -53,11 +53,6 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """Returns the dictionary represention of a square."""
-        square_dict = {}
-        for key, value in self.__dict__.items():
-            if key != "width" and key != "height":
-                square_dict[key] = value
-            else:
-                square_dict["size"] = value
+        square_dict = {'id': self.id, 'size': self.width, 'x': self.x, 'y': self.y}
 
         return square_dict
