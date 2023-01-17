@@ -53,3 +53,35 @@ class Base:
             data = json.loads(cls.to_json_string([obj.to_dictionary() for obj in list_objs]))
             with open(filename, "w") as fd:
                 json.dump(data, fd)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Static method used for json convertion to python data object
+
+        Args:
+            json_string (string): a string representing a list of dictionaries
+
+        Return:
+            the list of the json string representation json_string
+        """
+        if json_string is None:
+            return []
+        return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """This method is used to create a new instance of the Base class.
+
+        Args:
+            dictionary (dict): a keyworded argument with attributes.
+
+        Return:
+            An instance with all attributes already set
+        """
+        ind_square = "size"
+        if ind_square in dictionary.keys():
+            square = cls(0)
+            return square.update(**dictionary)
+
+        rectangle = cls(1, 1)
+        return rectangle.update(**dictionary)
