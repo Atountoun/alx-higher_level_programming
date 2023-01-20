@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """The module of the base class of all other class in this project."""
 import json
+import os
 
 
 class Base:
@@ -50,7 +51,9 @@ class Base:
             data = []
         else:
             filename = str(list_objs[0].__class__.__name__) + ".json"
-            data = json.loads(cls.to_json_string([obj.to_dictionary() for obj in list_objs]))
+            data = json.loads(cls.to_json_string(
+                    [obj.to_dictionary() for obj in list_objs]
+                    ))
             with open(filename, "w") as fd:
                 json.dump(data, fd)
 
@@ -78,10 +81,27 @@ class Base:
         Return:
             An instance with all attributes already set
         """
-        ind_square = "size"
-        if ind_square in dictionary.keys():
-            square = cls(0)
-            return square.update(**dictionary)
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                instance = cls(5, 7)
+            else:
+                instance = cls(4)
+            instance.update(**dictionary)
+            return instance
 
-        rectangle = cls(1, 1)
-        return rectangle.update(**dictionary)
+    @classmethod
+    def load_from_file(cls):
+        """This method is used to retrives instances saved in a json file.
+
+        Return:
+            An empty list if the file doesn't exist
+            Else, the list of the instances
+        """
+        filename = cls.__name__ + ".json"
+        if os.path.exists(filename):
+            with open(filename) as fd:
+                dicts = Base.from_json_string(fd.read())
+                ls = [cls.create(**d) for d in dicts]
+                return ls
+        else:
+            return []
