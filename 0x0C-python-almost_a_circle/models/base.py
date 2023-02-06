@@ -47,15 +47,14 @@ class Base:
         """
         data = []
         filename = ""
-        if list_objs is None:
-            data = []
-        else:
+
+        if list_objs:
             filename = cls.__name__ + ".json"
             data = json.loads(cls.to_json_string(
                     [obj.to_dictionary() for obj in list_objs]
                     ))
-            with open(filename, "w") as fd:
-                json.dump(data, fd)
+         with open(filename, "w") as fd:
+            json.dump(data, fd)
 
     @staticmethod
     def from_json_string(json_string):
