@@ -50,7 +50,7 @@ class Base:
         if list_objs is None:
             data = []
         else:
-            filename = str(list_objs[0].__class__.__name__) + ".json"
+            filename = cls.__name__ + ".json"
             data = json.loads(cls.to_json_string(
                     [obj.to_dictionary() for obj in list_objs]
                     ))
