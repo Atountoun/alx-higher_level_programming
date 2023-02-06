@@ -46,14 +46,13 @@ class Base:
             filename: <Class name>.json
         """
         data = []
-        filename = ""
+        filename = cls.__name__ + ".json"
 
         if list_objs:
-            filename = cls.__name__ + ".json"
             data = json.loads(cls.to_json_string(
                     [obj.to_dictionary() for obj in list_objs]
                     ))
-         with open(filename, "w") as fd:
+        with open(filename, "w") as fd:
             json.dump(data, fd)
 
     @staticmethod
