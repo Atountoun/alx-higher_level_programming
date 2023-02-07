@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """The module of the base class of all other class in this project."""
 import json
+import csv
 import os
 
 
@@ -103,3 +104,60 @@ class Base:
                 return ls
         else:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """This class method is used to serialize data in csv.
+
+        Args:
+            list_objs (list(obj)): The list of objects to serialize
+        Requirements:
+            The filename must be <class name>.csv
+            Format of the CSV:
+                Rectangle: <id>,<width>,<height>,<x>,<y>
+                Square: <id>,<size>,<x>,<y>
+        """
+        data = []
+        filename = cls.__name__ + ".csv"
+
+        if cls.__name__ == "Rectangle":
+            fieldnames = ['id', 'width', 'height', 'x', 'y']
+        else:
+            fieldnames = ['id', 'size', 'x', 'y']
+
+        if list_objs:
+            data = [obj.to_dictionary() for obj in list_objs]
+#            data = [list(item.values()) for item in list_dicts]
+        with open(filename, 'w', newline='') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writeheader()
+            if len(data):
+                for row in data:
+                    writer.writerow(row)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """This class method is used to deserialize data from csv file.
+
+        Return:
+            An empty list if the file doesn't exist
+            Else, the list of instances
+        """
+        data = []
+        filename = cls.__name__ + ".csv"
+        if os.path.exists(filename):
+            with open(filename, 'r', newline='') as csv_file:
+                reader = csv.DictReader(csv_file)
+                data = []
+                for row in reader:
+                    to_dict = {}
+                    to_dict['id'] = int(row['id'])
+                    to_dict['x'] = int(row['x'])
+                    to_dict['y'] = int(row['y'])
+                    if cls.__name__ == "Rectangle":
+                        to_dict['width'] = int(row['width'])
+                        to_dict['height'] = int(row['height'])
+                    else:
+                        to_dict['size'] = int(row['size'])
+                    data.append(cls.create(**to_dict))
+        return data
