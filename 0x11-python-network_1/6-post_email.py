@@ -8,10 +8,12 @@ import requests
 import sys
 
 
-url = sys.argv[1]
-email = sys.argv[2]
+if __name__ == '__main__':
 
-data = {"email": email}
-response = requests.post(url, json=data)
+    url = sys.argv[1]
+    email = sys.argv[2]
 
-print(response.text)
+    data = {"email": email}
+    response = requests.post(url, json=data)
+
+    print(response.text)
