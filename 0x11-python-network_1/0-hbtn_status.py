@@ -14,4 +14,4 @@ if __name__ == '__main__':
         print(f"\t- type: {type(data)}")
         print(f"\t- content: {data}")
         decoded = data.decode('utf-8')
-        print(f"\t- utf-8 content: {decoded}")
+        print(f"\t- utf8 content: {decoded}")

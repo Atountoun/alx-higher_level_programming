@@ -16,4 +16,4 @@ if __name__ == '__main__':
         try:
             print(req.read().decode('utf-8'))
         except urllib.error.HTTPError as err:
-            print(f"Error code: {err.code})
+            print(f"Error code: {err.code}")

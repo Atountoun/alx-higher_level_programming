@@ -23,6 +23,6 @@ if __name__ == '__main__':
             print("No result")
         else:
             for result in to_json:
-                print(f"[{result.get('id'}] result.get('name')")
+                print(f"[{result.get('id')}] {result.get('name')}")
     except ValueError:
-        print("Not a valid JSON')
+        print("Not a valid JSON")
